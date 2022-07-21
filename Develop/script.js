@@ -9,15 +9,8 @@ var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var special = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ";", ":", ">", "<", "=", "?","@", "[", "]", "{", "}", "^", "_", "`", "~", "|"];
 var newPassword = [];
 
-function randomCharacter() { 
-  var upperCase = Math.floor(Math.random() * upper.length);
-  var item = upper[upperCase];
-  return item;
-}
-console.log(randomCharacter());
-
 // Write password to the #password input
-function writePassword() {
+function generatePassword() {
 
   var wantsUpper = confirm("Would you like uppercased letters in your password? 'OK' for yes, 'Cancel' for no.");
   console.log(wantsUpper);
@@ -44,40 +37,41 @@ function writePassword() {
 
   
   while (newPassword.length < numberOfCharacters) {
-
     if(wantsUpper && newPassword.length < numberOfCharacters) {
-      function randomUpper () {
+      function randomUpper() {
       var uppercase = Math.floor(Math.random()*upper.length);
-      var upperCharacter = uppser[uppercase];
-      return upperCharacter;
-      newPassword.push(randomUpper);
-    }
+      var upperCharacter = upper[uppercase];
+      return upperCharacter;}
+      newPassword.push(randomUpper());
   }
     if(wantsLower && newPassword.length < numberOfCharacters) {
-      var randomLower = Math.floor(Math.random()*lower.length);
-      console.log(randomLower);
-      newPassword.push(randomLower);
+      function randomLower() {
+        var lowercase = Math.floor(Math.random()*lower.length);
+        var lowerCharacter = lower[lowercase];
+        return lowerCharacter;}
+        newPassword.push(randomLower());
     }
     if(wantsNumbers && newPassword.length < numberOfCharacters) {
-      var randomNumber = Math.floor(Math.random() *numbers.length);
-      console.log(randomNumber);
-      newPassword.push(randomNumber);
+      function randomNumber() {
+      var numbercase = Math.floor(Math.random()*numbers.length);
+      var numberCharacter = numbers[numbercase];
+      return numberCharacter;}
+      newPassword.push(randomNumber());
     }
     if(wantsSpecial && newPassword.length < numberOfCharacters) {
-      var randomSpecial = Math.floor(Math.random()*special.length);
-      console.log(randomSpecial);
-      newPassword.push(randomSpecial);
+      function randomSpecial() {
+      var specialcase = Math.floor(Math.random()*special.length);
+      var specialCharacter = special[specialcase];
+      return specialCharacter;}
+      newPassword.push(randomSpecial());
     }
   }
+  console.log(newPassword);
 }
-console.log(newPassword);
 
-writePassword();
-
-//var password = generatePassword();
-//var passwordText = document.querySelector("#password");
-//passwordText.value = password;
-
+var password = generatePassword();
+var passwordText = document.querySelector("#password");
+passwordText.value = newPassword.join('');
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
