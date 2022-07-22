@@ -1,17 +1,19 @@
 // Assignment code here
 
-
-// Get references to the #generate element
+// Add event listener to generate button
 var generateBtn = document.querySelector("#generate");
-var upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-var special = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ";", ":", ">", "<", "=", "?","@", "[", "]", "{", "}", "^", "_", "`", "~", "|"];
-var newPassword = [];
+generateBtn.addEventListener("click", generatePassword);
+var password = generatePassword();
 
-// Write password to the #password input
 function generatePassword() {
+    //all of the variables for the characters and for the new password itself 
+  var upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  var special = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ";", ":", ">", "<", "=", "?","@", "[", "]", "{", "}", "^", "_", "`", "~", "|"];
+  var newPassword = [];
 
+  // Prompts for the user to choose what is included in the password
   var wantsUpper = confirm("Would you like uppercased letters in your password? 'OK' for yes, 'Cancel' for no.");
   console.log(wantsUpper);
  
@@ -27,15 +29,18 @@ function generatePassword() {
   var numberOfCharacters = parseInt(prompt("How many characters would you like in your password? Write a number between 8 and 128."));
   console.log(numberOfCharacters);
 
+  // Error messages
   if (wantsUpper === false && wantsLower === false && wantsNumbers === false && wantsSpecial === false) {
     window.alert("You must choose at least one character type for your password. Please try again");
+    generatePassword();
   }
 
   if (numberOfCharacters > 128 || numberOfCharacters < 8) {
     window.alert("Your password must be at least 8 characters long and can be no longer than 128 characters. Please try again.")
+    generatePassword();
   }
 
-  
+  // While/If loops for the password to be created based on the desired criteria of the user
   while (newPassword.length < numberOfCharacters) {
     if(wantsUpper && newPassword.length < numberOfCharacters) {
       function randomUpper() {
@@ -66,12 +71,7 @@ function generatePassword() {
       newPassword.push(randomSpecial());
     }
   }
-  console.log(newPassword);
-}
-
-var password = generatePassword();
+  // Print the new password to the user
 var passwordText = document.querySelector("#password");
 passwordText.value = newPassword.join('');
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
+}
