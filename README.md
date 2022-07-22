@@ -7,7 +7,7 @@ Since coming up with passwords is always so difficult, this random password gene
 In order to create this app, I used starter HTML and CSS code (supplied by UCLA Extension). I then created the JS to incorporate functionality into the app. Upon establishing the possible variables, I used a while loop and if statements to help construct the new password before the system prints it out to the reader. I also added functionality so that clicking on the button generate would start the prompts again once a password has been generated the first time. 
 
 ## Site Screenshot
-<img src="./generator-screenshot" alt="Screenshot of Password Generator" >
+<img src="./Assets/Images/generator.png" alt="Screenshot of Password Generator" >
 
 ## Credits
 
